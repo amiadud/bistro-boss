@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Cover from '../shared/Cover/Cover';
-
 import orderimgs from '/shop/banner2.jpg'
-
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import useMenu from '../../hooks/useMenu';
-import OrderCard from './OrderCard/OrderCard';
 import OderTab from './OrderTab/Odertab';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import OrderPage from './OrderPage/OrderPage';
 
 const Order = () => {
     // const [MenuData] = useMenu()
