@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../Layout/MainLayout";
 import Home from "../pages/Home/Home";
 import Menu from "../pages/Menu/Menu";
-import Order from "../components/Order/Order";
 import Login from "../pages/Login/Login";
 import Singup from "../pages/SingUp/Singup";
 import PrivateRoutes from "./PrivateRoutes";
@@ -15,6 +14,7 @@ import AddItem from "../pages/Dashboard/AddItem/AddItem";
 import ManageItem from "../pages/Dashboard/ManageItem/ManageItem";
 import UpdateItem from "../pages/Dashboard/ManageItem/UpdateItem";
 import Payment from "../pages/Dashboard/Payment/Payment";
+import Order from "../components/Order/Order";
 
 const Routes = createBrowserRouter([
     {
