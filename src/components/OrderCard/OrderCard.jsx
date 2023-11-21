@@ -1,9 +1,9 @@
 import React from 'react';
-import useAxios from '../../../hooks/useAxios';
-import useAuth from '../../../hooks/useAuth';
+import useAxios from '../../hooks/useAxios';
+import useAuth from '../../hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import useCarts from '../../../hooks/useCarts';
+import useCarts from '../../hooks/useCarts';
 
 const OrderCard = ({items}) => {
   const { name, image, price, recipe, _id} = items

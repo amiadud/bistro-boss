@@ -3,7 +3,7 @@ import Cover from '../shared/Cover/Cover';
 import orderimgs from '/shop/banner2.jpg'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import OderTab from './OrderTab/Odertab';
+import OderTab from '../OrderTab/OrderTab';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 

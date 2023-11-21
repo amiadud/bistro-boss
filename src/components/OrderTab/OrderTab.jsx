@@ -1,7 +1,7 @@
 import React from 'react';
 import OrderCard from '../OrderCard/OrderCard';
 
-const OderTab = ({items, }) => {
+const OrderTab = ({items, }) => {
 
 
 
@@ -16,4 +16,4 @@ const OderTab = ({items, }) => {
     );
 };
 
-export default OderTab;
+export default OrderTab;
