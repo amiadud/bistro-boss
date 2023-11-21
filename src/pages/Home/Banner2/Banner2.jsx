@@ -1,7 +1,5 @@
 import React from 'react';
 
-import bannerimg from '../../../assets/home/chef-service.jpg'
-
 const Banner2 = () => {
     return (
         <div >

@@ -7,7 +7,6 @@ const CheckoutForm = () => {
 
     const [Error, setError] = useState('')
     const [ClientSecret, setClientSecret] = useState('')
-
     const stripe = useStripe();
     const elements = useElements();
     const axiosSecure = useAxios();
