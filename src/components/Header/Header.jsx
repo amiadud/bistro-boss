@@ -1,17 +1,43 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { FaCartFlatbed } from "react-icons/fa6";
+import useAuth from '../../hooks/useAuth';
+import useCarts from '../../hooks/useCarts';
 
 const Header = () => {
 
+  const [cart] = useCarts();
+  console.log(cart);
+
+  const {user, userLogout} = useAuth();
+
+  const handleLogout = ()=> {
+    userLogout()
+    .then( () => {
+      setTimeout(() => {
+        toast.success("Logout Successful");
+      }, 200);
+      navigate('/login') 
+    })
+    .catch(error => console.error(error))
+  }
+
     const navLinks = <>
             <li ><NavLink to={'/'}>Home</NavLink></li>
-            <li ><NavLink to={'/'}>Our Menu</NavLink></li>
-            <li ><NavLink to={'/'}>Home</NavLink></li>
+            <li ><NavLink to={'/menu'}>Our Menu</NavLink></li>
+            <li ><NavLink to={'/order/salad'}>Our Order</NavLink></li>
+            <li ><NavLink to={'/'}>Secret</NavLink></li>
+            <li className='btn btn-sm flex items-center'><NavLink to={'/dashboard/cart'}><FaCartFlatbed />{cart.length}</NavLink></li>
+            {user ? <li onClick={handleLogout} className='btn btn-sm capitalize hover:bg-orange-600 hover:text-white'>Logout</li> 
+            :
+             <>
+              <li ><NavLink className=" capitalize bg-slate-500 hover:bg-orange-600 hover:text-white" to={'/login'}>Login</NavLink></li>
+             </>}
     </>
 
     return (
         <>
-          <div className=" max-w-screen-xl navbar fixed z-50 opacity-100 text-white bg-gray-600">
+          <div className=" max-w-screen-xl navbar fixed z-50 bg-opacity-60 text-white bg-gray-600">
   <div className="navbar-start">
     <div className="dropdown ">
       <label tabIndex={0} className="btn btn-ghost lg:hidden">

@@ -1,18 +1,23 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import MenuTitle from '../../../components/MenuTitle/MenuTitle';
+import useMenu from '../../../hooks/useMenu';
 
 const PopularMenu = () => {
 
-    const [menuItem, setMenuItem] = useState(['']) // fetch the menu item
+    // const [menuItem, setMenuItem] = useState(['']) // fetch the menu item
     const [showAll, setShowAll] = useState(false); //show all menu items
-    console.log(menuItem);
+    // console.log(menuItem);
 
-    useEffect( ()=> {
-        fetch('menu.json') // api menus
-        .then(res => res.json())
-        .then(data => setMenuItem(data))
-    },[])
+    // useEffect( ()=> {
+    //     fetch('menu.json') // api menus
+    //     .then(res => res.json())
+    //     .then(data => setMenuItem(data))
+    // },[])
+
+    const [ menuItem ] = useMenu();
+
+    const popular = menuItem.filter(item => item.category === 'popular');
 
     const handleShowAllClick = () => {
         setShowAll(true);
@@ -27,9 +32,9 @@ const PopularMenu = () => {
 
         <div className='grid md:grid-cols-2 gap-6'>
         {
-            showAll ? menuItem.map(menus => 
+            showAll ? popular.map(menus => 
                 <div className='flex gap-3 my-2 item-center'>
-        <div>
+        <div key={menus._id}>
             <h2
             style={{'--image-url': `url(${menus?.image})`}} 
             
@@ -50,7 +55,7 @@ const PopularMenu = () => {
         </div>
         )
         :
-        menuItem.slice(0, 6).map(menus => 
+        popular.slice(0, 6).map(menus => 
             <div className='flex gap-3 my-2 item-center'>
     <div>
         <h2
@@ -77,7 +82,7 @@ const PopularMenu = () => {
         </div>
         <div className='text-center my-5'>
         {
-            !showAll && <button className='btn text-center btn-outline btn-secondary' onClick={handleShowAllClick}>Show All Cart Items</button>
+            !showAll && <button className='btn border-b-4 border-t-0 border-l-0 border-r-0 text-center btn-outline border' onClick={handleShowAllClick}>View Full Menu</button>
         }
         </div>
         </>
