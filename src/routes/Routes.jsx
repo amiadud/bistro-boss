@@ -16,6 +16,7 @@ import UpdateItem from "../pages/Dashboard/ManageItem/UpdateItem";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import Order from "../components/Order/Order";
 import PaymentHistory from "../pages/Dashboard/Payment/PaymentHistory";
+import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 
 const Routes = createBrowserRouter([
     {
@@ -59,7 +60,7 @@ const Routes = createBrowserRouter([
         // normal user routes
         {
           path:'cart/',
-          element:<Cart/>
+          element:<PrivateRoutes><Cart/></PrivateRoutes>
         },
         {
           path:'payment/',
@@ -71,6 +72,10 @@ const Routes = createBrowserRouter([
         },
         // admin routes
         {
+          path:'admin-home/',
+          element:<AdminHome/>
+        },
+        {
           path:'users/',
           element:<AdminRoutes><AllUser/></AdminRoutes>
         },
@@ -81,14 +86,14 @@ const Routes = createBrowserRouter([
         },
         {
           path:'manage-item/',
-          element:<ManageItem/>
+          element:<AdminRoutes><ManageItem/></AdminRoutes>
           
         }
         ,
         {
           path:'update-item/:id',
           element:<UpdateItem/>,
-          loader: ({params}) => fetch(`https://bistro-boss-server-nine-kappa.vercel.app/item/${params.id}`)
+          loader: ({params}) => fetch(`http://localhost:5000/item/${params.id}`)
         }
       ]
     }

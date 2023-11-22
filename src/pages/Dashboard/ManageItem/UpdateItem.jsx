@@ -2,9 +2,10 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import useAxios from '../../../hooks/useAxios';
-import { useLoaderData, useParams } from 'react-router-dom';
+import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useAxiosOpen from '../../../hooks/useAxiosOpen';
+import useAuth from '../../../hooks/useAuth';
 
 const image_hosting_key = '80fd26d461aa4b2ae1c1ca7dda2f47ec'
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}` 
@@ -13,6 +14,9 @@ const UpdateItem = () => {
   const {name, price, recipe, image, category, _id} = useLoaderData()
 
   const axiosOpen = useAxiosOpen();
+  const navigate = useNavigate();
+
+  const {loading} = useAuth()
     
   const axiosSecure = useAxios();
     
@@ -45,8 +49,10 @@ const UpdateItem = () => {
                if(res.data.modifiedCount > 0){
                 Swal.fire({
                     title: "Your Item Updated successfully!",
-                    icon: "success"
+                    icon: "success",
+                    timer:1500
                   });
+                  navigate('/dashboard/manage-item')
                }
             })
         }

@@ -1,13 +1,16 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FaCartFlatbed } from "react-icons/fa6";
 import useAuth from '../../hooks/useAuth';
 import useCarts from '../../hooks/useCarts';
+import Swal from 'sweetalert2';
 
 const Header = () => {
 
   const [cart] = useCarts();
   console.log(cart);
+
+  const navigate = useNavigate();
 
   const {user, userLogout} = useAuth();
 
@@ -15,7 +18,10 @@ const Header = () => {
     userLogout()
     .then( () => {
       setTimeout(() => {
-        toast.success("Logout Successful");
+        Swal.fire({
+          title: "Logout Success!",
+          icon: "success"
+        });
       }, 200);
       navigate('/login') 
     })

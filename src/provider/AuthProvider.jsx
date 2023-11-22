@@ -73,6 +73,7 @@ const AuthProvider = ({children}) => {
             else{
                 localStorage.removeItem('access-token')
                 // todo: remove token (if token stored in the client side)
+                setLoading(false)
             }
             
         })

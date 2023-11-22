@@ -2,10 +2,12 @@ import React from 'react';
 import { FaAccessibleIcon, FaBook, FaCalendar, FaCartShopping, FaChrome, FaHouseMedicalCircleCheck, FaUsers, FaUtensils } from 'react-icons/fa6';
 import { FaCommentAlt, FaCommentsDollar, FaHome, FaShoppingCart, FaAd , FaList, FaMagnet, FaMenorah } from "react-icons/fa";
 import { HiMenuAlt1 } from "react-icons/hi";
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import useCarts from '../hooks/useCarts';
 import useAdmin from '../hooks/useAdmin';
 import useAuth from '../hooks/useAuth';
+import AdminHome from '../pages/Dashboard/AdminHome/AdminHome';
+import Swal from 'sweetalert2';
 
 const Dashboard = () => {
 
@@ -13,13 +15,20 @@ const Dashboard = () => {
 
     const [isAdmin] = useAdmin();
 
+    const navigate = useNavigate();
+
     const {userLogout} = useAuth();
 
     const handleLogout = ()=> {
         userLogout()
         .then( () => {
           setTimeout(() => {
-            toast.success("Logout Successful");
+            Swal.fire({
+                title: "Logout Success",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 1500
+              });
           }, 200);
           navigate('/login') 
         })
@@ -31,7 +40,7 @@ const Dashboard = () => {
             <div className="w-64 min-h-screen bg-orange-500">
                 <ul className='menu  p-4'>
                 {
-                    isAdmin ? <><li><NavLink to={'/dashboard/'}><FaHome/> Admin Home</NavLink></li>
+                    isAdmin ? <><li><NavLink to={'/dashboard/admin-home'}><FaHome/> Admin Home</NavLink></li>
                     <li><NavLink to={'/dashboard/add-items'}><FaUtensils/> Add Items</NavLink></li>
                     <li><NavLink to={'/dashboard/manage-item'}><FaList/> Manage Items</NavLink></li>
                     <li><NavLink to={'/dashboard/paymenthistory'}><FaList/> Admin Payment History</NavLink></li>
