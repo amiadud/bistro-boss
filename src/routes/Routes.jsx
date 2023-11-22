@@ -93,7 +93,7 @@ const Routes = createBrowserRouter([
         {
           path:'update-item/:id',
           element:<UpdateItem/>,
-          loader: ({params}) => fetch(`http://localhost:5000/item/${params.id}`)
+          loader: ({params}) => fetch(`https://bistro-boss-server-nine-kappa.vercel.app/item/${params.id}`)
         }
       ]
     }

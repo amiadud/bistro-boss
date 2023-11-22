@@ -17,7 +17,7 @@ const Order = () => {
 
     const {data:{result, postCount}} = useQuery({
         queryKey: ['menus', page],
-        queryFn: () => fetch(`http://localhost:5000/menus?category=${category}&page=${page}`).then((res) => res.json()),
+        queryFn: () => fetch(`https://bistro-boss-server-nine-kappa.vercel.app/menus?category=${category}&page=${page}`).then((res) => res.json()),
         initialData:{result:[], postCount:0}
     })
     const totalPages = Math.ceil(postCount / 6)
